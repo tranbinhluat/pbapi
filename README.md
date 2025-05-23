@@ -39,6 +39,10 @@ python examples/example_usage.py
 This will output a table of your Power BI workspaces and datasets using
 `pandas` DataFrames.
 
+All `get_raw` methods accept a `fetch_all` flag. When set to `True`, the
+client automatically handles `$top`/`$skip` pagination and returns all
+records.
+
 ## Extending
 
 The codebase is structured to be easily extended for additional Power BI
