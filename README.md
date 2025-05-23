@@ -36,6 +36,15 @@ Run the example script to list workspaces and datasets:
 python examples/example_usage.py
 ```
 
+You can specify a workspace to list datasets from using the ``--workspace-id``
+flag. You can also print tables for a specific dataset using ``--dataset-id``
+and display dashboards with ``--show-dashboards``:
+
+```bash
+python examples/example_usage.py --workspace-id YOUR_WORKSPACE_ID \
+    --dataset-id YOUR_DATASET_ID --show-dashboards
+```
+
 This will output a table of your Power BI workspaces and datasets using
 `pandas` DataFrames.
 

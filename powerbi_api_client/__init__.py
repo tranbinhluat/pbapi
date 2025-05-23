@@ -4,6 +4,7 @@ from .auth import PowerBIAuth
 from .workspace import Workspace
 from .dataset import Dataset
 from .datamodel import DataModel
+from .dashboard import Dashboard
 from . import utils
 
 __all__ = [
@@ -11,5 +12,6 @@ __all__ = [
     "Workspace",
     "Dataset",
     "DataModel",
+    "Dashboard",
     "utils",
 ]
