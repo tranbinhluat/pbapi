@@ -3,7 +3,14 @@
 import argparse
 import pandas as pd
 
-from powerbi_api_client import Dashboard, DataModel, Dataset, PowerBIAuth, Workspace
+from powerbi_api_client import (
+    Dashboard,
+    DataModel,
+    Dataset,
+    PowerBIAuth,
+    Workspace,
+    utils,
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -25,6 +32,12 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Display dashboards for the selected workspace.",
     )
+    parser.add_argument(
+        "--save-json",
+        help=(
+            "Base file name for saving fetched data to the json_data folder."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -41,6 +54,8 @@ def main() -> None:
     workspaces_df = pd.DataFrame(workspaces)
     print("Workspaces:")
     print(workspaces_df)
+    if args.save_json:
+        utils.save_json(workspaces, f"{args.save_json}_workspaces.json")
 
     if not workspaces_df.empty:
         workspace_id = args.workspace_id or workspaces_df.loc[0, "id"]
@@ -49,6 +64,8 @@ def main() -> None:
         datasets_df = pd.DataFrame(datasets)
         print(f"\nDatasets in workspace {workspace_id}:")
         print(datasets_df)
+        if args.save_json:
+            utils.save_json(datasets, f"{args.save_json}_datasets.json")
 
         if datasets_df.empty:
             return
@@ -59,6 +76,8 @@ def main() -> None:
         tables_df = pd.DataFrame(tables)
         print(f"\nTables in dataset {dataset_id}:")
         print(tables_df)
+        if args.save_json:
+            utils.save_json(tables, f"{args.save_json}_tables.json")
 
         if args.show_dashboards:
             dashboard_client = Dashboard(auth, workspace_id)
@@ -66,6 +85,8 @@ def main() -> None:
             dashboards_df = pd.DataFrame(dashboards)
             print(f"\nDashboards in workspace {workspace_id}:")
             print(dashboards_df)
+            if args.save_json:
+                utils.save_json(dashboards, f"{args.save_json}_dashboards.json")
 
 
 if __name__ == "__main__":

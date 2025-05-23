@@ -62,3 +62,16 @@ endpoints. Each entity class contains two core methods:
 
 Additional helpers and endpoints can be implemented following the same
 pattern.
+
+## Saving Output
+
+Use ``powerbi_api_client.utils.save_json`` to write any Python object to a
+JSON file. The helper creates a ``json_data`` directory by default and accepts a
+custom file name:
+
+```python
+from powerbi_api_client.utils import save_json
+
+data = {"hello": "world"}
+save_json(data, "example.json")
+```
