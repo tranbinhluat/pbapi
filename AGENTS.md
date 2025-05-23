@@ -11,3 +11,4 @@ These guidelines apply to the entire repository.
   ```bash
   python -m py_compile powerbi_api_client/*.py examples/*.py
   ```
+* JSON output files should be stored in the ``json_data`` directory.
